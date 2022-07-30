@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/dist/css/index.css">
+    <link rel="stylesheet" href="dist\assets\css\index.css">
     <title>Document</title>
-    <script src="/dist/js/index.js" defer></script>
+    <script src="/dist/assets/js/index.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -16,13 +16,15 @@
             <input id="api-key" placeholder="Api Key" onchange="preencherApi()">
             <button id="login-button" disabled>Login</button>
         </div>
+        <div class="create-list ">
+            <input type="text" placeholder="Título da lista">
+            <textarea placeholder="Descrição" id="create-list-descricao" cols="30" rows="3"></textarea>
+            <button id="create-list-button">Criar nova lista</button>            
+        </div>
         <div id="search-container table">
             <input id="search" placeholder="nome do filme">
             <button id="search-button">Pesquisar Filme</button>
         </div>
-        <div id="list-container table">
-            <input id="search" placeholder="Escreva...">
-            <button id="search-button">Pesquisar Filme</button>
         </div>
       </div>
 </body>

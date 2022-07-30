@@ -8,12 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let apiKey = '6aa37dad17d7ee90e31d84f21faf53b3';
-let requestToken;
+let apiKey;
 let username;
 let password;
 let sessionId;
 let listId;
+let requestToken;
+let session_id;
 let loginButton = document.getElementById('login-button');
 let searchButton = document.getElementById('search-button');
 let searchContainer = document.getElementById('search-container table');
@@ -33,7 +34,7 @@ searchButton.addEventListener('click', () => __awaiter(void 0, void 0, void 0, f
     ul.id = "lista";
     for (const item of listaDeFilmes.results) {
         let li = document.createElement('li');
-        li.appendChild(document.createTextNode(item.original_title));
+        li.appendChild(document.createTextNode(item.title));
         ul.appendChild(li);
     }
     console.log(listaDeFilmes);
@@ -91,12 +92,11 @@ class HttpClient {
         });
     }
 }
-function procurarFilme(query) {
+function procurarFilme(query, page = 1) {
     return __awaiter(this, void 0, void 0, function* () {
         query = encodeURI(query);
-        console.log(query);
         let result = yield HttpClient.get({
-            url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`,
+            url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}`,
             method: "GET"
         });
         return result;
@@ -139,6 +139,7 @@ function criarSessao() {
             url: `https://api.themoviedb.org/3/authentication/session/new?api_key=${apiKey}&request_token=${requestToken}`,
             method: "GET"
         });
+        console.log(result);
         sessionId = result.session_id;
     });
 }

@@ -9,6 +9,7 @@ let session_id: number;
 let loginButton = document.getElementById('login-button') as HTMLButtonElement;
 let searchButton = document.getElementById('search-button') as HTMLButtonElement;
 let searchContainer = document.getElementById('search-container table') as HTMLTableElement;
+let createListButton = document.getElementById('create-list-button') as HTMLButtonElement
 
 
 interface Filmes {
@@ -31,13 +32,16 @@ interface HttpClientArguments {
 
 interface RequestTokenResposta {
   request_token: string,
+  session_id: number;
+  page: number,
+  results: Array<Filmes>,
+  total_pages: number,
+  total_results: number
 }
 
 interface SessionResposta {
   session_id: number;
 }
-
-
 
 loginButton.addEventListener('click', async () => {
   await criarRequestToken();
@@ -63,7 +67,12 @@ searchButton.addEventListener('click', async () => {
   searchContainer.appendChild(ul);
 })
 
+createListButton.addEventListener('click', async () => {
+  let newListName = (document.getElementById('new-list-name') as HTMLInputElement).value;
+  let newListDescription = (document.getElementById('new-list-description') as HTMLTextAreaElement).value
 
+  await criarLista(newListName, newListDescription);
+})
 
 function preencherSenha() {
   password = (document.getElementById('senha') as HTMLInputElement).value;
@@ -131,7 +140,7 @@ async function procurarFilme(query: string, page: number = 1): Promise<RespostaF
   return result
 }
 
-async function adicionarFilme(filmeId: number) {
+async function adicionarFilme(filmeId: number): Promise<void> {
   let result = await HttpClient.get({
     url: `https://api.themoviedb.org/3/movie/${filmeId}?api_key=${apiKey}&language=en-US`,
     method: "GET"
@@ -178,7 +187,7 @@ async function criarLista(nomeDaLista: string, descricao: string) {
       language: "pt-br"
     }
   })
-  console.log(result);
+  console.log("LISTA CRIADA: ", result);
 }
 
 async function adicionarFilmeNaLista(filmeId: number, listaId: number) {
@@ -197,5 +206,6 @@ async function pegarLista() {
     url: `https://api.themoviedb.org/3/list/${listId}?api_key=${apiKey}`,
     method: "GET"
   })
+  return result;
   console.log(result);
 }

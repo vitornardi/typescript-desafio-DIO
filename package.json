@@ -1,0 +1,21 @@
+{
+  "name": "dio-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server",
+    "watch": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitornardi/typescript-desafio-DIO.git"
+  },
+  "homepage": ""
+}

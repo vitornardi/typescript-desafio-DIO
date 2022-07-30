@@ -9,7 +9,11 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-color: rgb(60, 151, 151);
+    background-color: rgba(255, 0, 0);
+    background-image: url(/dist/assets/images/fall-movies-index-1628968089.jpg);
+    width: 100%;
+    height: 100%;
+
 }
 
 .container{
@@ -18,15 +22,16 @@ body {
     padding: 20px;
     border-radius: 10px;
     display: flex;
+    box-shadow: 10px 5px 50px;
 }
 
 .container *{
-    margin: 4px 0px;
+    margin: 4px 5px;
 }
 
 #login-container {
     align-self: flex-start;
-    width: 300px;
+    width: 250px;
     height: 100%;
     justify-content: space-between;
     display: flex;
@@ -37,10 +42,12 @@ body {
     resize: none;
 }
 
-#create-list-container, #list-container{
-    width: 30vw;
+.create-list, #list-container{
+    width: 20vw;
     height: 100%;
     justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 #search-container{
